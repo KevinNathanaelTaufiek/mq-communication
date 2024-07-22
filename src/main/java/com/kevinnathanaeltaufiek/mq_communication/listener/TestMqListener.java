@@ -13,7 +13,8 @@ public class TestMqListener {
 //       log.info("[TestMqListener] Queue Listener got Message : {}", message);
 //    }
 
-    @JmsListener(destination = "TEST.TO.DEV", id = "JMSCONTAINER-TEST.TO.DEV")
+    // containerFactory bisa dihapus jika ga pakai multiple qm
+    @JmsListener(destination = "TEST.TO.DEV", id = "JMSCONTAINER-TEST.TO.DEV", containerFactory = "qm1JmsListenerContainerFactory")
     public void consumeMsg(Message message){
         log.info("[TestMqListener] Queue Listener got Message : {}", message);
     }

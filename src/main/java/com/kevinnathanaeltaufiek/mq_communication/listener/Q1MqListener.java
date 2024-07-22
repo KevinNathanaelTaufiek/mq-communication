@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class Q1MqListener {
-    @JmsListener(destination = "Q1.TO.DEV", id = "JMSCONTAINER-Q1.TO.DEV")
+    // containerFactory bisa dihapus jika ga pakai multiple qm
+    @JmsListener(destination = "Q1.TO.DEV", id = "JMSCONTAINER-Q1.TO.DEV", containerFactory = "qm1JmsListenerContainerFactory")
     public void consumeMsgDQ1(Message message) throws JMSException {
         log.info("[Q1MqListener] Queue Listener got Message : {}", message);
         log.info("[Q1MqListener] Queue Listener Custom Property : {}", message.getStringProperty("my_property"));
